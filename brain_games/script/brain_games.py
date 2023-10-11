@@ -1,3 +1,6 @@
+#!/usr/bin/env python3
+
+
 def main():
     text = 'Welcome to the Brain Games!'
     print(text)
