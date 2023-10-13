@@ -7,10 +7,16 @@ game_rules = 'Answer "yes" if the number is even, otherwise answer "no".'
 
 
 def game_even() -> tuple:
-    num = rr(101)    # generate random number in limit 101
+    """
+    Функция game_even определяет логику игры "проверка на четность".
+    Первым шагом генерируется случайное число, затем определяется верный ответ,
+    после чего у пользователя запрашивается его вариант. Функция возвращает
+    пару ответ, верный_ответ
+    """
+    num = rr(101)
+    true_answer = 'no' if num % 2 else 'yes'   # alt ('yes', 'no')[num % 2]
     print(f'Question: {num}')
     answer = prompt.string('Your answer: ').lower()
-    true_answer = 'no' if num % 2 else 'yes'   # alt ('yes', 'no')[num % 2]
     return answer, true_answer
 
 
