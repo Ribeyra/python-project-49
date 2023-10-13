@@ -1,37 +1,8 @@
-import prompt
-from random import randrange as rr, choice
 from brain_games.cli import welcome_user
 
 
-def game_calc() -> tuple:
-    oper = choice(("+", "-", "*"))
-    num1, num2 = rr(51), rr(11) if oper == '*' else rr(51)
-    match oper:
-        case '+':
-            true_answer = num1 + num2
-        case '-':
-            true_answer = num1 - num2
-        case '*':
-            true_answer = num1 * num2
-    print(f'Question: {num1} {oper} {num2}')
-    answer = int(prompt.string('Your answer: '))
-    return answer, true_answer
-
-
-def game_even() -> tuple:
-    num = rr(101)    # generate random number in limit 101
-    print(f'Question: {num}')
-    answer = prompt.string('Your answer: ').lower()
-    true_answer = 'no' if num % 2 else 'yes'   # alt ('yes', 'no')[num % 2]
-    return answer, true_answer
-
-
-def verify_answer(type_game) -> bool:
-    list_foo = {'even': game_even,
-                'calc': game_calc,
-                'tree': 1}
-    current_foo = list_foo[type_game]
-    answer, true_answer = current_foo()
+def verify_answer(game_foo) -> bool:
+    answer, true_answer = game_foo()
     if answer == true_answer:
         return True
     else:
@@ -40,9 +11,10 @@ def verify_answer(type_game) -> bool:
         return False
 
 
-def game(type_game) -> bool:
-    for _ in range(3):
-        if verify_answer(type_game):
+def game(game_foo) -> bool:
+    rounds = 3
+    for _ in range(rounds):
+        if verify_answer(game_foo):
             print('Correct!')
         else:
             return False
@@ -50,7 +22,7 @@ def game(type_game) -> bool:
         return True
 
 
-def game_logic(type_game):
+def game_logic(type_game, game_foo):
     text = 'Welcome to the Brain Games!'
     print(text)
     name = welcome_user()
@@ -60,7 +32,7 @@ def game_logic(type_game):
             print('Answer "yes" if the number is even, otherwise answer "no".')
         case 'calc':
             print('What is the result of the expression?')
-    if game(type_game):
+    if game(game_foo):
         print(f'Congratulations, {name}!')
     else:
         print(f"Let's try again, {name}!")
