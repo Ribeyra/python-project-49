@@ -3,6 +3,8 @@ import prompt
 from random import randrange as rr
 from brain_games.logic import game_logic
 
+game_rules = 'Answer "yes" if the number is even, otherwise answer "no".'
+
 
 def game_even() -> tuple:
     num = rr(101)    # generate random number in limit 101
@@ -13,7 +15,7 @@ def game_even() -> tuple:
 
 
 def main():
-    game_logic('even', game_even)
+    game_logic(game_rules, game_even)
 
 
 if __name__ == '__main__':

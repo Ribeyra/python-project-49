@@ -22,16 +22,12 @@ def game(game_foo) -> bool:
         return True
 
 
-def game_logic(type_game, game_foo):
+def game_logic(game_rules, game_foo):
     text = 'Welcome to the Brain Games!'
     print(text)
     name = welcome_user()
     print(f'Hello, {name}')
-    match type_game:
-        case 'even':
-            print('Answer "yes" if the number is even, otherwise answer "no".')
-        case 'calc':
-            print('What is the result of the expression?')
+    print(game_rules)
     if game(game_foo):
         print(f'Congratulations, {name}!')
     else:

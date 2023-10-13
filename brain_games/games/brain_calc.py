@@ -3,6 +3,8 @@ import prompt
 from random import choice, randrange as rr
 from brain_games.logic import game_logic
 
+game_rules = 'What is the result of the expression?'
+
 
 def game_calc() -> tuple:
     oper = choice(("+", "-", "*"))
@@ -22,7 +24,7 @@ def game_calc() -> tuple:
 
 
 def main():
-    game_logic('calc', game_calc)
+    game_logic(game_rules, game_calc)
 
 
 if __name__ == '__main__':
