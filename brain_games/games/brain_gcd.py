@@ -35,7 +35,9 @@ def game_gcd() -> tuple:
     Затем у пользователя запрашивается его вариант ответа. Функция возвращает
     пару ответ, верный_ответ
     """
-    nums = [rr(1, 101) for _ in range(2)]
+    numbers_amount = 2
+    min_lim, max_lim = 1, 101
+    nums = [rr(min_lim, max_lim) for _ in range(numbers_amount)]
     print(f'Question: {nums[0]} {nums[1]}')
     true_answer = gcd(nums)
     answer = prompt.string('Your answer: ')

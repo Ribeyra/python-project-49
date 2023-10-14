@@ -18,9 +18,12 @@ def game_progression() -> tuple:
     Запрашивает ответ у пользователя. Функция возвращает пару ответ,
     верный_ответ
     """
-    step = rr(-20, 20)
-    len_row = rr(5, 11)
-    start = rr(-50, 51)
+    step_limits = (-20, 20)
+    step = rr(step_limits[0], step_limits[1])
+    len_row_limits = (5, 11)
+    len_row = rr(len_row_limits[0], len_row_limits[1])
+    start_limits = (-50, 51)
+    start = rr(start_limits[0], start_limits[1])
     row = [start]
     while len(row) < len_row:
         row.append(row[-1] + step)

@@ -46,7 +46,8 @@ def game_prime() -> tuple:
     будет предлагать пользователю простое или составное, а затем генерировал
     соответсвующее... Если потребуется, сделаю это позже.
     """
-    num = rr(201)
+    limit = 201
+    num = rr(limit)
     true_answer = 'yes' if is_prime(num) else 'no'
     print(f'Question: {num}')
     answer = prompt.string('Your answer: ').lower()

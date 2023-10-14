@@ -19,7 +19,9 @@ def game_calc() -> tuple:
     быть числом. Функция возвращает пару ответ, верный_ответ
     """
     oper = choice(("+", "-", "*"))
-    num1, num2 = rr(51), rr(11) if oper == '*' else rr(51)
+    limit = 51
+    limit_at_mult = 11
+    num1, num2 = rr(limit), rr(limit_at_mult) if oper == '*' else rr(limit)
     match oper:
         case '+':
             true_answer = num1 + num2

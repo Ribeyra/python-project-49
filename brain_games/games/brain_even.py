@@ -13,7 +13,8 @@ def game_even() -> tuple:
     после чего у пользователя запрашивается его вариант. Функция возвращает
     пару ответ, верный_ответ
     """
-    num = rr(101)
+    limit = 101
+    num = rr(limit)
     true_answer = 'no' if num % 2 else 'yes'   # alt ('yes', 'no')[num % 2]
     print(f'Question: {num}')
     answer = prompt.string('Your answer: ').lower()
