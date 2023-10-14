@@ -1,9 +1,14 @@
 [tool.poetry]
 name = "hexlet-code"
 version = "0.1.0"
-description = ""
-authors = ["ribeyra <ribeyra@gmail.com>"]
+description = "This project features 5 simple number games"
+authors = ["Ribeyra <ribeyra@gmail.com>"]
 readme = "README.md"
+repository = "https://github.com/Ribeyra/python-project-49"
+classifiers = [
+    "Topic :: Games/Entertainment",
+    "Programming Language :: Python :: 3.10"
+]
 packages = [
   { include = "brain_games" },
 ]
