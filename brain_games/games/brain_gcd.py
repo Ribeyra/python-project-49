@@ -14,8 +14,8 @@ def gcd(nums: list[int]) -> int:
 
 #    nums.sort()                             # Мой вариант решения с
 #    if nums[0] == 0 or nums[0] == nums[1]:  # использованием бинарного
-#        return nums[1]                      # алгоритма Эвклида, который
-#    elif nums[0] == 1:                      # я нашел на вики
+#        return nums[1]                      # алгоритма Евклида,
+#    elif nums[0] == 1:                      # который я нашел на вики
 #        return 1                            # https://w.wiki/7mfY
 #    elif nums[0] % 2 == 0 and nums[1] % 2 == 0:
 #        return 2 * gcd([nums[0] // 2, nums[1] // 2])
