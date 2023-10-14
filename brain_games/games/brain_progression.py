@@ -27,7 +27,7 @@ def game_progression() -> tuple:
     secret_index = rr(1, len(row) - 1)
     true_answer = row[secret_index]                # В первом варианте решения
     row[secret_index] = '..'    # числа в ряду конвертировались в строки через
-    print('Question: ', *row)   # list(map(str, row)), затем в принт собирались
+    print('Question:', *row)    # list(map(str, row)), затем в принт собирались
     answer = prompt.string('Your answer: ')      # в строку через " ".join(row)
     if answer.isdigit() or answer[1:].isdigit() and answer[0] == '-':
         answer = int(answer)
