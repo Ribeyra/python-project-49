@@ -22,7 +22,7 @@ def game_progression() -> tuple:
     len_row = rr(5, 11)
     start = rr(-50, 51)
     row = [start]
-    for _ in range(len_row):
+    while len(row) < len_row:
         row.append(row[-1] + step)
     secret_index = rr(1, len(row) - 1)
     true_answer = row[secret_index]                # В первом варианте решения
