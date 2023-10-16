@@ -3,8 +3,8 @@ from brain_games.cli import welcome_user
 
 
 def main():
-    text = 'Welcome to the Brain Games!'
-    print(text)
+    GREETINGS = 'Welcome to the Brain Games!'
+    print(GREETINGS)
     name = welcome_user()
     print(f'Hello, {name}')
 

@@ -1,9 +1,5 @@
-#!/usr/bin/env python3
 import prompt
 from random import randrange as rr
-from brain_games.logic import game_logic
-
-game_rules = 'Answer "yes" if given number is prime. Otherwise answer "no".'
 
 
 def is_prime(num: int) -> bool:
@@ -46,8 +42,8 @@ def game_prime() -> tuple:
     будет предлагать пользователю простое или составное, а затем генерировал
     соответсвующее... Если потребуется, сделаю это позже.
     """
-    limit = 201
-    num = rr(limit)
+    LIMIT = 201
+    num = rr(LIMIT)
     true_answer = 'yes' if is_prime(num) else 'no'
     print(f'Question: {num}')
     answer = prompt.string('Your answer: ').lower()
@@ -55,7 +51,7 @@ def game_prime() -> tuple:
 
 
 def main():
-    game_logic(game_rules, game_prime)
+    pass
 
 
 if __name__ == '__main__':

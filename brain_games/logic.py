@@ -17,16 +17,16 @@ def _verify_answer(game_foo: callable) -> bool:
         return False
 
 
-def _game(game_foo: callable) -> bool:
+def _run_loop(game_foo: callable) -> bool:
     """
-    Функция _game содержит цикл, соответсвующий кол-ву раундов (по умолчанию 3)
-    В цикле происходит обращение к функции _verify_answer, которая проверяет
-    правильность ответа. Если _verify_answer возвращает False, цикл прерывается
-    и функция _game возвращает False. Иначе, если цикл завершается штатно
-    функция _game возвращает True
+    Функция _run_loop содержит цикл, соответсвующий кол-ву раундов
+    (по умолчанию 3). В цикле происходит обращение к функции _verify_answer,
+    которая проверяет правильность ответа. Если _verify_answer возвращает
+    False, цикл прерывается и функция _run_loop возвращает False. Иначе, если
+    цикл завершается штатно функция _run_loop возвращает True
     """
-    rounds = 3
-    for _ in range(rounds):
+    ROUNDS = 3
+    for _ in range(ROUNDS):
         if _verify_answer(game_foo):
             print('Correct!')
         else:
@@ -44,12 +44,12 @@ def game_logic(game_rules: str, game_foo: callable) -> None:
     булевого значения, возвращаемого функцией _game происходит выбор
     завершающего сообщения
     """
-    text = 'Welcome to the Brain Games!'
-    print(text)
+    GREETINGS = 'Welcome to the Brain Games!'
+    print(GREETINGS)
     name = welcome_user()
     print(f'Hello, {name}')
     print(game_rules)
-    if _game(game_foo):
+    if _run_loop(game_foo):
         print(f'Congratulations, {name}!')
     else:
         print(f"Let's try again, {name}!")

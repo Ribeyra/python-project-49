@@ -1,9 +1,5 @@
-#!/usr/bin/env python3
 import prompt
 from random import choice, randrange as rr
-from brain_games.logic import game_logic
-
-game_rules = 'What is the result of the expression?'
 
 
 def game_calc() -> tuple:
@@ -19,9 +15,9 @@ def game_calc() -> tuple:
     быть числом. Функция возвращает пару ответ, верный_ответ
     """
     oper = choice(("+", "-", "*"))
-    limit = 51
-    limit_at_mult = 11
-    num1, num2 = rr(limit), rr(limit_at_mult) if oper == '*' else rr(limit)
+    LIMIT = 51
+    LIMIT_AT_MULT = 11
+    num1, num2 = rr(LIMIT), rr(LIMIT_AT_MULT) if oper == '*' else rr(LIMIT)
     match oper:
         case '+':
             true_answer = num1 + num2
@@ -37,7 +33,7 @@ def game_calc() -> tuple:
 
 
 def main():
-    game_logic(game_rules, game_calc)
+    pass
 
 
 if __name__ == '__main__':

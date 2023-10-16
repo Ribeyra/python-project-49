@@ -1,15 +1,11 @@
-#!/usr/bin/env python3
 import prompt
 from random import randrange as rr
-from brain_games.logic import game_logic
-
-game_rules = 'Find the greatest common divisor of given numbers.'
 
 
-def gcd(nums: list[int]) -> int:
+def get_gcd(nums: list[int]) -> int:
     if nums[1] == 0:                        # Вариант бинарного алгоритма,
         return nums[0]                      # предложенный ChatGPT
-    return gcd([nums[1], nums[0] % nums[1]])
+    return get_gcd([nums[1], nums[0] % nums[1]])
 
 
 #    nums.sort()                             # Мой вариант решения с
@@ -35,11 +31,11 @@ def game_gcd() -> tuple:
     Затем у пользователя запрашивается его вариант ответа. Функция возвращает
     пару ответ, верный_ответ
     """
-    numbers_amount = 2
-    min_lim, max_lim = 1, 101
-    nums = [rr(min_lim, max_lim) for _ in range(numbers_amount)]
+    NUMBERS_AMOUNT = 2
+    MIN_LIM, MAX_LIM = 1, 101
+    nums = [rr(MIN_LIM, MAX_LIM) for _ in range(NUMBERS_AMOUNT)]
     print(f'Question: {nums[0]} {nums[1]}')
-    true_answer = gcd(nums)
+    true_answer = get_gcd(nums)
     answer = prompt.string('Your answer: ')
     if answer.isdigit():
         answer = int(answer)
@@ -47,7 +43,7 @@ def game_gcd() -> tuple:
 
 
 def main():
-    game_logic(game_rules, game_gcd)
+    pass
 
 
 if __name__ == '__main__':

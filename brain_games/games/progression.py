@@ -1,9 +1,5 @@
-#!/usr/bin/env python3
 import prompt
 from random import randrange as rr
-from brain_games.logic import game_logic
-
-game_rules = 'What number is missing in the progression?'
 
 
 def game_progression() -> tuple:
@@ -18,12 +14,12 @@ def game_progression() -> tuple:
     Запрашивает ответ у пользователя. Функция возвращает пару ответ,
     верный_ответ
     """
-    step_limits = (-20, 20)
-    step = rr(step_limits[0], step_limits[1])
-    len_row_limits = (5, 11)
-    len_row = rr(len_row_limits[0], len_row_limits[1])
-    start_limits = (-50, 51)
-    start = rr(start_limits[0], start_limits[1])
+    STEP_LIMITS = (-20, 20)
+    step = rr(STEP_LIMITS[0], STEP_LIMITS[1])
+    LEN_ROW_LIMITS = (5, 11)
+    len_row = rr(LEN_ROW_LIMITS[0], LEN_ROW_LIMITS[1])
+    START_LIMIT = (-50, 51)
+    start = rr(START_LIMIT[0], START_LIMIT[1])
     row = [start]
     while len(row) < len_row:
         row.append(row[-1] + step)
@@ -38,7 +34,7 @@ def game_progression() -> tuple:
 
 
 def main():
-    game_logic(game_rules, game_progression)
+    pass
 
 
 if __name__ == '__main__':
