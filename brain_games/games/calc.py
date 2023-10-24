@@ -5,7 +5,7 @@ from brain_games.constants import (
     GAME_RULES_CALC,
     LIMIT_FOR_CALC,
     LIMIT_AT_MULT
-    )
+)
 
 
 def get_expression():

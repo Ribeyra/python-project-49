@@ -6,7 +6,7 @@ from brain_games.constants import (
     LEN_ROW_LIMITS,
     START_LIMIT,
     STEP_LIMITS
-    )
+)
 
 
 def get_progression() -> list:
