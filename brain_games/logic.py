@@ -1,4 +1,5 @@
 from brain_games.cli import welcome_user
+from brain_games.constants import ROUNDS, GREETINGS
 
 
 def _verify_answer(game_foo: callable) -> bool:
@@ -11,10 +12,9 @@ def _verify_answer(game_foo: callable) -> bool:
     answer, true_answer = game_foo()
     if answer == true_answer:
         return True
-    else:
-        print(f"'{answer}' is wrong answer ;(. "
-              f"Correct answer was '{true_answer}'")
-        return False
+    print(f"'{answer}' is wrong answer ;(. "
+          f"Correct answer was '{true_answer}'")
+    return False
 
 
 def _run_loop(game_foo: callable) -> bool:
@@ -25,14 +25,12 @@ def _run_loop(game_foo: callable) -> bool:
     False, цикл прерывается и функция _run_loop возвращает False. Иначе, если
     цикл завершается штатно функция _run_loop возвращает True
     """
-    ROUNDS = 3
     for _ in range(ROUNDS):
         if _verify_answer(game_foo):
             print('Correct!')
         else:
             return False
-    else:
-        return True
+    return True
 
 
 def game_logic(game_rules: str, game_foo: callable) -> None:
@@ -44,7 +42,6 @@ def game_logic(game_rules: str, game_foo: callable) -> None:
     булевого значения, возвращаемого функцией _game происходит выбор
     завершающего сообщения
     """
-    GREETINGS = 'Welcome to the Brain Games!'
     print(GREETINGS)
     name = welcome_user()
     print(f'Hello, {name}')
@@ -53,11 +50,3 @@ def game_logic(game_rules: str, game_foo: callable) -> None:
         print(f'Congratulations, {name}!')
     else:
         print(f"Let's try again, {name}!")
-
-
-def main():
-    pass
-
-
-if __name__ == '__main__':
-    main()

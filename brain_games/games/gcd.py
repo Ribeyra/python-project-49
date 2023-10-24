@@ -1,5 +1,7 @@
 import prompt
-from random import randrange as rr
+import random
+from brain_games.logic import game_logic
+from brain_games.constants import GAME_RULES_GCD, LIMITS, NUMS_AMOUNT
 
 
 def get_gcd(nums: list[int]) -> int:
@@ -31,20 +33,12 @@ def game_gcd() -> tuple:
     Затем у пользователя запрашивается его вариант ответа. Функция возвращает
     пару ответ, верный_ответ
     """
-    NUMBERS_AMOUNT = 2
-    MIN_LIM, MAX_LIM = 1, 101
-    nums = [rr(MIN_LIM, MAX_LIM) for _ in range(NUMBERS_AMOUNT)]
+    nums = [random.randrange(LIMITS[0], LIMITS[1]) for _ in range(NUMS_AMOUNT)]
     print(f'Question: {nums[0]} {nums[1]}')
-    true_answer = get_gcd(nums)
+    true_answer = str(get_gcd(nums))
     answer = prompt.string('Your answer: ')
-    if answer.isdigit():
-        answer = int(answer)
     return answer, true_answer
 
 
-def main():
-    pass
-
-
-if __name__ == '__main__':
-    main()
+def run_game_gcd():
+    game_logic(GAME_RULES_GCD, game_gcd)

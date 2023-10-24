@@ -1,5 +1,7 @@
 import prompt
-from random import randrange as rr
+import random
+from brain_games.logic import game_logic
+from brain_games.constants import GAME_RULES_EVEN, LIMIT
 
 
 def game_even() -> tuple:
@@ -9,17 +11,12 @@ def game_even() -> tuple:
     после чего у пользователя запрашивается его вариант. Функция возвращает
     пару ответ, верный_ответ
     """
-    LIMIT = 101
-    num = rr(LIMIT)
+    num = random.randrange(LIMIT)
     true_answer = 'no' if num % 2 else 'yes'   # alt ('yes', 'no')[num % 2]
     print(f'Question: {num}')
     answer = prompt.string('Your answer: ').lower()
     return answer, true_answer
 
 
-def main():
-    pass
-
-
-if __name__ == '__main__':
-    main()
+def run_game_even():
+    game_logic(GAME_RULES_EVEN, game_even)

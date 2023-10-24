@@ -1,5 +1,7 @@
 import prompt
-from random import randrange as rr
+import random
+from brain_games.logic import game_logic
+from brain_games.constants import GAME_RULES_PRIME, LIMIT
 
 
 def is_prime(num: int) -> bool:
@@ -14,20 +16,7 @@ def is_prime(num: int) -> bool:
     for divisor in range(2, int(num ** (0.5)) + 1):
         if num % divisor == 0:
             return False
-    else:
-        return True
-#   Оказалось, что время выполнения моей функции и функции с сайта foxford.ru
-#   отличается на уровне статистической погрешности.
-#    """
-#    Алгоритм проверки на простоту взял с сайта
-#    https://foxford.ru/wiki/informatika/proverka-chisla-na-prostotu-v-python
-#    """
-#    if num % 2 == 0:
-#        return num == 2
-#    d = 3
-#    while d * d <= num and num % d != 0:
-#        d += 2
-#    return d * d > num
+    return True
 
 
 def game_prime() -> tuple:
@@ -42,17 +31,12 @@ def game_prime() -> tuple:
     будет предлагать пользователю простое или составное, а затем генерировал
     соответсвующее... Если потребуется, сделаю это позже.
     """
-    LIMIT = 201
-    num = rr(LIMIT)
+    num = random.randrange(LIMIT)
     true_answer = 'yes' if is_prime(num) else 'no'
     print(f'Question: {num}')
     answer = prompt.string('Your answer: ').lower()
     return answer, true_answer
 
 
-def main():
-    pass
-
-
-if __name__ == '__main__':
-    main()
+def run_game_prime():
+    game_logic(GAME_RULES_PRIME, game_prime)

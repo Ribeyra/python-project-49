@@ -1,41 +1,46 @@
 import prompt
-from random import randrange as rr
+import random
+from brain_games.logic import game_logic
+from brain_games.constants import (
+    GAME_RULES_PROGRESSION,
+    LEN_ROW_LIMITS,
+    START_LIMIT,
+    STEP_LIMITS
+    )
+
+
+def get_progression() -> list:
+    """
+    Возвращает прогрессию случайной длинны в диапазоне LEN_ROW_LIMITS, с шагом
+    в диапазоне STEP_LIMITS, с началом в диапазоне START_LIMIT.
+    """
+    step = random.randrange(STEP_LIMITS[0], STEP_LIMITS[1])
+    len_row = random.randrange(LEN_ROW_LIMITS[0], LEN_ROW_LIMITS[1])
+    start = random.randrange(START_LIMIT[0], START_LIMIT[1])
+    row = [start]
+    while len(row) < len_row:
+        row.append(row[-1] + step)
+    return row
 
 
 def game_progression() -> tuple:
     """
     Функция game_progression определяет логику игры «Арифметическая прогрессия»
-    Вначале определяем шаг прогрессии, затем длину ряда, затем первое число.
-    Затем собираем ряд, добавляем в список первое число, затем определнное
-    кол-во чисел с нажным шагом от предыдущего числа. Далее определяем индекс
-    числа, которое будет загадано, предусмострев, что таким индексом не будет
-    первое и последнее число ряда. Число под выбранным индеском, сохраняем в
-    правильном ответе. Заменяем в ряду число под выбранным индексом на '..'.
-    Запрашивает ответ у пользователя. Функция возвращает пару ответ,
+    Функция get_progression возвращает случайную прогрессию. Далее определяем
+    индекс числа, которое будет загадано, предусмотрев, что таким индексом не
+    будет первое и последнее число ряда. Число под выбранным индеском,
+    сохраняем в правильном ответе. Заменяем в ряду число под выбранным индексом
+    на '..'. Запрашивает ответ у пользователя. Функция возвращает пару ответ,
     верный_ответ
     """
-    STEP_LIMITS = (-20, 20)
-    step = rr(STEP_LIMITS[0], STEP_LIMITS[1])
-    LEN_ROW_LIMITS = (5, 11)
-    len_row = rr(LEN_ROW_LIMITS[0], LEN_ROW_LIMITS[1])
-    START_LIMIT = (-50, 51)
-    start = rr(START_LIMIT[0], START_LIMIT[1])
-    row = [start]
-    while len(row) < len_row:
-        row.append(row[-1] + step)
-    secret_index = rr(1, len(row) - 1)
-    true_answer = row[secret_index]                # В первом варианте решения
-    row[secret_index] = '..'    # числа в ряду конвертировались в строки через
-    print('Question:', *row)    # list(map(str, row)), затем в принт собирались
-    answer = prompt.string('Your answer: ')      # в строку через " ".join(row)
-    if answer.isdigit() or answer[1:].isdigit() and answer[0] == '-':
-        answer = int(answer)
+    row = get_progression()
+    secret_index = random.randrange(1, len(row) - 1)
+    true_answer = str(row[secret_index])
+    row[secret_index] = '..'
+    print('Question:', *row)
+    answer = prompt.string('Your answer: ')
     return answer, true_answer
 
 
-def main():
-    pass
-
-
-if __name__ == '__main__':
-    main()
+def run_game_progression():
+    game_logic(GAME_RULES_PROGRESSION, game_progression)
