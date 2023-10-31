@@ -19,9 +19,9 @@ Python^3.10.
 
 **Installation:**  
 
-To install the games, use the following commands:  
+To install the games, use the following command:  
 
-python3 -m pip install --user git+https://github.com/Ribeyra/python-project-49  
+```python3 -m pip install --user git+https://github.com/Ribeyra/python-project-49```  
 
 **How to Play:**  
 
@@ -32,7 +32,7 @@ See examples in the asciinemas below.
 
 To remove the games, use:  
 
-python3 -m pip uninstall hexlet-code  
+```python3 -m pip uninstall hexlet-code```  
 
 **Examples:**  
 
