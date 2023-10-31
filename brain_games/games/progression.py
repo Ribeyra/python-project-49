@@ -1,6 +1,6 @@
 import prompt
 import random
-from brain_games.logic import game_logic
+from brain_games.engine import game_engine
 from brain_games.constants import (
     GAME_RULES_PROGRESSION,
     LEN_ROW_LIMITS,
@@ -9,7 +9,7 @@ from brain_games.constants import (
 )
 
 
-def get_progression() -> list:
+def _get_progression() -> list:
     """
     Возвращает прогрессию случайной длинны в диапазоне LEN_ROW_LIMITS, с шагом
     в диапазоне STEP_LIMITS, с началом в диапазоне START_LIMIT.
@@ -23,7 +23,7 @@ def get_progression() -> list:
     return row
 
 
-def game_progression() -> tuple:
+def _game_progression() -> tuple:
     """
     Функция game_progression определяет логику игры «Арифметическая прогрессия»
     Функция get_progression возвращает случайную прогрессию. Далее определяем
@@ -33,14 +33,17 @@ def game_progression() -> tuple:
     на '..'. Запрашивает ответ у пользователя. Функция возвращает пару ответ,
     верный_ответ
     """
-    row = get_progression()
+    row = _get_progression()
     secret_index = random.randrange(1, len(row) - 1)
-    true_answer = str(row[secret_index])
+    correct_answer = str(row[secret_index])
     row[secret_index] = '..'
     print('Question:', *row)
     answer = prompt.string('Your answer: ')
-    return answer, true_answer
+    return answer, correct_answer
 
 
 def run_game_progression():
-    game_logic(GAME_RULES_PROGRESSION, game_progression)
+    """
+    Запускает игру
+    """
+    game_engine(GAME_RULES_PROGRESSION, _game_progression)

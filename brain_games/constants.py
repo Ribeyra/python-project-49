@@ -25,4 +25,4 @@ GAME_RULES_EVEN = 'Answer "yes" if the number is even, otherwise answer "no".'
 # calc.py
 GAME_RULES_CALC = 'What is the result of the expression?'
 LIMIT_FOR_CALC = 51
-LIMIT_AT_MULT = 11
+# LIMIT_AT_MULT = 11

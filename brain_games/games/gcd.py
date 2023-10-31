@@ -1,13 +1,17 @@
 import prompt
 import random
-from brain_games.logic import game_logic
+from brain_games.engine import game_engine
 from brain_games.constants import GAME_RULES_GCD, LIMITS, NUMS_AMOUNT
 
 
-def get_gcd(nums: list[int]) -> int:
+def _get_gcd(nums: list[int]) -> int:
+    """
+    В качестве аргумента принимает список с 2 числами.
+    Возвращает наибольший общий делитель для чисел из списка.
+    """
     if nums[1] == 0:                        # Вариант бинарного алгоритма,
         return nums[0]                      # предложенный ChatGPT
-    return get_gcd([nums[1], nums[0] % nums[1]])
+    return _get_gcd([nums[1], nums[0] % nums[1]])
 
 
 #    nums.sort()                             # Мой вариант решения с
@@ -25,20 +29,23 @@ def get_gcd(nums: list[int]) -> int:
 #        return gcd([nums[0], (nums[1] - nums[0]) // 2])
 
 
-def game_gcd() -> tuple:
+def _game_gcd() -> tuple:
     """
     Функция game_gcd определяет логику игры по определению наибольшего
     общего делителя. Сначала создается список из 2 случайных чисел. Далее
-    для указанных чисел, с помощью рекурсивной функции gcd находится НОД.
+    для указанных чисел, с помощью рекурсивной функции get_gcd находится НОД.
     Затем у пользователя запрашивается его вариант ответа. Функция возвращает
     пару ответ, верный_ответ
     """
     nums = [random.randrange(LIMITS[0], LIMITS[1]) for _ in range(NUMS_AMOUNT)]
     print(f'Question: {nums[0]} {nums[1]}')
-    true_answer = str(get_gcd(nums))
+    correct_answer = str(_get_gcd(nums))
     answer = prompt.string('Your answer: ')
-    return answer, true_answer
+    return answer, correct_answer
 
 
 def run_game_gcd():
-    game_logic(GAME_RULES_GCD, game_gcd)
+    """
+    Запускает игру
+    """
+    game_engine(GAME_RULES_GCD, _game_gcd)

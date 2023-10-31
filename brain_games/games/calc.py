@@ -1,53 +1,59 @@
 import prompt
 import random
-from brain_games.logic import game_logic
+from brain_games.engine import game_engine
 from brain_games.constants import (
     GAME_RULES_CALC,
-    LIMIT_FOR_CALC,
-    LIMIT_AT_MULT
+    LIMIT_FOR_CALC as LIMIT
 )
 
 
-def get_expression():
+def _get_expression():
     """
-    Получает случайное выражение. Первым шагом происходит случайный выбор
-    математической операции. Затем случайным образом определяются опернады. В
-    случае, если выбрано умножение, второй операнд ограничается 10 (мне кажется
-    решать примеры типа 48 * 37 не лучшее развлечение).
+    Возвращает случайное математическое выражение.
     """
     oper = random.choice(("+", "-", "*"))
-    num1 = random.randrange(LIMIT_FOR_CALC)
-    num2 = (random.randrange(LIMIT_AT_MULT) if oper == '*' else
-            random.randrange(LIMIT_FOR_CALC))
-    return num1, oper, num2
+    num1, num2 = random.randrange(LIMIT), random.randrange(LIMIT)
+    return oper, num1, num2
 
 
-def get_true_answer(num1, oper, num2):
+"""
+В случае, если выбрано умножение, второй операнд ограничается 10 (мне кажется
+решать примеры типа 48 * 37 не лучшее развлечение).
+num2 = (random.randrange(LIMIT_AT_MULT) if oper == '*' else
+        random.randrange(LIMIT_FOR_CALC))
+"""
+
+
+def _get_correct_answer(oper, num1, num2):
     """
-    В зависимости от операнда, определяется верный ответ.
+    В качестве аргументов принимает мат операцию и операнды.
+    Возвращает верный ответ
     """
     match oper:
         case '+':
-            true_answer = num1 + num2
+            correct_answer = num1 + num2
         case '-':
-            true_answer = num1 - num2
+            correct_answer = num1 - num2
         case '*':
-            true_answer = num1 * num2
-    return true_answer
+            correct_answer = num1 * num2
+    return correct_answer
 
 
-def game_calc() -> tuple:
+def _game_calc() -> tuple:
     """
     Функция game_calc определяет логику игры "калькулятор". Верный ответ
-    приводится к строке для полседующего сравнения с ответом пользователя.
+    приводится к строке для последующего сравнения с ответом пользователя.
     Функция возвращает пару ответ, верный_ответ
     """
-    num1, oper, num2 = get_expression()
-    true_answer = str(get_true_answer(num1, oper, num2))
+    oper, num1, num2 = _get_expression()
+    correct_answer = str(_get_correct_answer(oper, num1, num2))
     print(f'Question: {num1} {oper} {num2}')
     answer = prompt.string('Your answer: ')
-    return answer, true_answer
+    return answer, correct_answer
 
 
 def run_game_calc():
-    game_logic(GAME_RULES_CALC, game_calc)
+    """
+    Запускает игру
+    """
+    game_engine(GAME_RULES_CALC, _game_calc)
