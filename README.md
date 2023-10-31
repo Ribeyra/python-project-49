@@ -21,8 +21,7 @@ Python^3.10.
 
 To install the games, use the following commands:  
 
-make build  
-make package-install  
+python3 -m pip install --user git+https://github.com/Ribeyra/python-project-49  
 
 **How to Play:**  
 
@@ -33,18 +32,18 @@ See examples in the asciinemas below.
 
 To remove the games, use:  
 
-make package-uninstall  
+python3 -m pip uninstall hexlet-code  
 
 **Examples:**  
 
 **Brain-even**  
-[![asciicast](https://asciinema.org/a/jlc1BMRcqTgWSGoUD1p9XYMbw.svg)](https://asciinema.org/a/jlc1BMRcqTgWSGoUD1p9XYMbw)  
+[![asciicast](https://asciinema.org/a/Ipmcbaiv0FquRgwvLjqbNBb4l.svg)](https://asciinema.org/a/Ipmcbaiv0FquRgwvLjqbNBb4l)  
 **Brain-calc**  
-[![asciicast](https://asciinema.org/a/6Etf5TaTbiHKxIRShrlY3EXVE.svg)](https://asciinema.org/a/6Etf5TaTbiHKxIRShrlY3EXVE)  
+[![asciicast](https://asciinema.org/a/ptbVBKOVaAKAADqI0pHR1PkrA.svg)](https://asciinema.org/a/ptbVBKOVaAKAADqI0pHR1PkrA)  
 **Brain-gcd**  
-[![asciicast](https://asciinema.org/a/kPYFyJSgCqPcYR5k50HDzlL30.svg)](https://asciinema.org/a/kPYFyJSgCqPcYR5k50HDzlL30)  
+[![asciicast](https://asciinema.org/a/P6YsCr2268VbmiVt7nwzZ1noH.svg)](https://asciinema.org/a/P6YsCr2268VbmiVt7nwzZ1noH)  
 **Brain-progression**  
-[![asciicast](https://asciinema.org/a/Ave8QQZwioF3dl0b0eIumvpLl.svg)](https://asciinema.org/a/Ave8QQZwioF3dl0b0eIumvpLl)  
+[![asciicast](https://asciinema.org/a/OJlFgysVNCZYRxE7xrO9ljZAu.svg)](https://asciinema.org/a/OJlFgysVNCZYRxE7xrO9ljZAu)  
 **Brain-prime**  
-[![asciicast](https://asciinema.org/a/QnNbMX2APTwawaLLafofap2gB.svg)](https://asciinema.org/a/QnNbMX2APTwawaLLafofap2gB)  
+[![asciicast](https://asciinema.org/a/ctJUZiGsIf0dc14ZDI6kLKHQL.svg)](https://asciinema.org/a/ctJUZiGsIf0dc14ZDI6kLKHQL)  
 
