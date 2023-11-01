@@ -1,22 +1,30 @@
+import prompt
 from brain_games.cli import welcome_user
 from brain_games.constants import ROUNDS
 
 
 def _run_loop_and_verify_answer(game_foo: callable) -> bool:
     """
-    Единственным аргументом принимает функцию с логикой игры.
+    Единственным аргументом принимает функцию с логикой игры (game_foo).
     Функция содержит цикл, соответствующий кол-ву раундов (ROUNDS).
-    В цикле сравнивается верный ответ и ответ пользователя, возвращаемые
-    функцией, содержащей логику игры (game_foo). Если ответы не совпадут,
-    цикл прерывается и эта функция возвращает False. Иначе, если цикл
-    завершается штатно, эта функция возвращает True
+    game_foo возвращает значение за вопроса () и верный ответ. Затем
+    запрашивается ответ пользователя. В цикле сравнивается ответ
+    пользователя и верный ответ. Если ответы не совпадут, цикл прерывается
+    и эта функция возвращает False. Иначе, если цикл завершается штатно,
+    эта функция возвращает True.
     """
     for _ in range(ROUNDS):
-        answer, correct_answer = game_foo()
-        if answer == correct_answer:
+        quest, correct_answer = game_foo()
+        print('Question:', end=' ')
+        if isinstance(quest, list) or isinstance(quest, tuple):
+            print(*quest)
+        else:
+            print(quest)
+        user_answer = prompt.string('Your answer: ').lower()
+        if user_answer == correct_answer:
             print('Correct!')
         else:
-            print(f"'{answer}' is wrong answer ;(. "
+            print(f"'{user_answer}' is wrong answer ;(. "
                   f"Correct answer was '{correct_answer}'")
             return False
     return True

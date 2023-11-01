@@ -1,4 +1,3 @@
-import prompt
 import random
 from brain_games.engine import game_engine
 from brain_games.constants import (
@@ -30,16 +29,13 @@ def _game_progression() -> tuple:
     индекс числа, которое будет загадано, предусмотрев, что таким индексом не
     будет первое и последнее число ряда. Число под выбранным индеском,
     сохраняем в правильном ответе. Заменяем в ряду число под выбранным индексом
-    на '..'. Запрашивает ответ у пользователя. Функция возвращает пару ответ,
-    верный_ответ
+    на '..'. Функция возвращает значение для вопроса и верный_ответ
     """
     row = _get_progression()
     secret_index = random.randrange(1, len(row) - 1)
     correct_answer = str(row[secret_index])
     row[secret_index] = '..'
-    print('Question:', *row)
-    answer = prompt.string('Your answer: ')
-    return answer, correct_answer
+    return row, correct_answer
 
 
 def run_game_progression():

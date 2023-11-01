@@ -1,4 +1,3 @@
-import prompt
 import random
 from brain_games.engine import game_engine
 from brain_games.constants import GAME_RULES_GCD, LIMITS, NUMS_AMOUNT
@@ -34,14 +33,11 @@ def _game_gcd() -> tuple:
     Функция game_gcd определяет логику игры по определению наибольшего
     общего делителя. Сначала создается список из 2 случайных чисел. Далее
     для указанных чисел, с помощью рекурсивной функции get_gcd находится НОД.
-    Затем у пользователя запрашивается его вариант ответа. Функция возвращает
-    пару ответ, верный_ответ
+    Функция возвращает значение для вопроса и верный_ответ
     """
     nums = [random.randrange(LIMITS[0], LIMITS[1]) for _ in range(NUMS_AMOUNT)]
-    print(f'Question: {nums[0]} {nums[1]}')
     correct_answer = str(_get_gcd(nums))
-    answer = prompt.string('Your answer: ')
-    return answer, correct_answer
+    return nums, correct_answer
 
 
 def run_game_gcd():

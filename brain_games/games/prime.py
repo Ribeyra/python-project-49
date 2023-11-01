@@ -1,4 +1,3 @@
-import prompt
 import random
 from brain_games.engine import game_engine
 from brain_games.constants import GAME_RULES_PRIME, LIMIT
@@ -21,8 +20,9 @@ def _game_prime() -> tuple:
     """
     Функция game_prime определяет логику игры «Простое ли число?». На первом
     шаге получаем случайное число. С помощью функции is_prime определяем
-    является ли полученное число простым и верный ответ. Затем запрашиваем
-    ответ пользователя. Функция возвращает пару ответ, верный_ответ
+    является ли полученное число простым и верный ответ. Функция возвращает
+    значение для вопроса и верный_ответ
+
     В процессе тестирования обнаружил, что скрипт не так часто генерирует
     простые числа. Статистически это оправданно, простых чисел меньше чем
     составных. Можно изменить скрипт, так, что бы он сначала определял какое
@@ -31,9 +31,7 @@ def _game_prime() -> tuple:
     """
     num = random.randrange(LIMIT)
     correct_answer = 'yes' if _is_prime(num) else 'no'
-    print(f'Question: {num}')
-    answer = prompt.string('Your answer: ').lower()
-    return answer, correct_answer
+    return num, correct_answer
 
 
 def run_game_prime():

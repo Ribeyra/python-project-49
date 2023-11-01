@@ -1,4 +1,3 @@
-import prompt
 import random
 from brain_games.engine import game_engine
 from brain_games.constants import (
@@ -13,7 +12,7 @@ def _get_expression():
     """
     oper = random.choice(("+", "-", "*"))
     num1, num2 = random.randrange(LIMIT), random.randrange(LIMIT)
-    return oper, num1, num2
+    return num1, oper, num2
 
 
 """
@@ -24,7 +23,7 @@ num2 = (random.randrange(LIMIT_AT_MULT) if oper == '*' else
 """
 
 
-def _get_correct_answer(oper, num1, num2):
+def _get_correct_answer(num1, oper, num2):
     """
     В качестве аргументов принимает мат операцию и операнды.
     Возвращает верный ответ
@@ -41,15 +40,12 @@ def _get_correct_answer(oper, num1, num2):
 
 def _game_calc() -> tuple:
     """
-    Функция game_calc определяет логику игры "калькулятор". Верный ответ
-    приводится к строке для последующего сравнения с ответом пользователя.
-    Функция возвращает пару ответ, верный_ответ
+    Функция game_calc определяет логику игры "калькулятор".
+    Функция возвращает значение для вопроса и верный_ответ
     """
-    oper, num1, num2 = _get_expression()
-    correct_answer = str(_get_correct_answer(oper, num1, num2))
-    print(f'Question: {num1} {oper} {num2}')
-    answer = prompt.string('Your answer: ')
-    return answer, correct_answer
+    expression = _get_expression()
+    correct_answer = str(_get_correct_answer(*expression))
+    return expression, correct_answer
 
 
 def run_game_calc():
