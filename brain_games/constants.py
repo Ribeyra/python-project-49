@@ -12,15 +12,15 @@ STEP_LIMITS = (-20, 20)
 # prime.py
 GAME_RULES_PRIME = 'Answer "yes" if given number is prime. '\
                    'Otherwise answer "no".'
-LIMIT = 201     # also even.py
 
 # gcd.py
 GAME_RULES_GCD = 'Find the greatest common divisor of given numbers.'
 NUMS_AMOUNT = 2
-LIMITS = (1, 101)
+LIMITS = (2, 101)
 
 # even.py
 GAME_RULES_EVEN = 'Answer "yes" if the number is even, otherwise answer "no".'
+LIMIT = 201
 
 # calc.py
 GAME_RULES_CALC = 'What is the result of the expression?'

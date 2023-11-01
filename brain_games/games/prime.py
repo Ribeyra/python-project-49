@@ -1,6 +1,6 @@
 import random
 from brain_games.engine import game_engine
-from brain_games.constants import GAME_RULES_PRIME, LIMIT
+from brain_games.constants import GAME_RULES_PRIME, LIMITS
 
 
 def _is_prime(num: int) -> bool:
@@ -29,7 +29,7 @@ def _game_prime() -> tuple:
     будет предлагать пользователю простое или составное, а затем генерировал
     соответсвующее... Если потребуется, сделаю это позже.
     """
-    num = random.randrange(LIMIT)
+    num = random.randrange(LIMITS[0], LIMITS[1])
     correct_answer = 'yes' if _is_prime(num) else 'no'
     return num, correct_answer
 
