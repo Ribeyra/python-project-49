@@ -2,54 +2,32 @@ import random
 from brain_games.engine import game_engine
 from brain_games.constants import (
     GAME_RULES_CALC,
-    LIMIT_FOR_CALC as LIMIT
+    LIMIT_FOR_CALC as LIMIT,
+    OPERATORS
 )
 
 
-def _get_expression():
-    """
-    Возвращает случайное математическое выражение.
-    """
-    oper = random.choice(("+", "-", "*"))
+def _get_expression() -> tuple:
+    oper = random.choice(OPERATORS)
     num1, num2 = random.randrange(LIMIT), random.randrange(LIMIT)
     return num1, oper, num2
 
 
-"""
-В случае, если выбрано умножение, второй операнд ограничается 10 (мне кажется
-решать примеры типа 48 * 37 не лучшее развлечение).
-num2 = (random.randrange(LIMIT_AT_MULT) if oper == '*' else
-        random.randrange(LIMIT_FOR_CALC))
-"""
-
-
-def _get_correct_answer(num1, oper, num2):
-    """
-    В качестве аргументов принимает мат операцию и операнды.
-    Возвращает верный ответ
-    """
+def _get_result_math_operation(num1, oper, num2):
     match oper:
         case '+':
-            correct_answer = num1 + num2
+            return num1 + num2
         case '-':
-            correct_answer = num1 - num2
+            return num1 - num2
         case '*':
-            correct_answer = num1 * num2
-    return correct_answer
+            return num1 * num2
 
 
-def _game_calc() -> tuple:
-    """
-    Функция game_calc определяет логику игры "калькулятор".
-    Функция возвращает значение для вопроса и верный_ответ
-    """
+def _prepare_game_data() -> tuple:
     expression = _get_expression()
-    correct_answer = str(_get_correct_answer(*expression))
+    correct_answer = str(_get_result_math_operation(*expression))
     return expression, correct_answer
 
 
 def run_game_calc():
-    """
-    Запускает игру
-    """
-    game_engine(GAME_RULES_CALC, _game_calc)
+    game_engine(GAME_RULES_CALC, _prepare_game_data)

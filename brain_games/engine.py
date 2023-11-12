@@ -3,45 +3,38 @@ from brain_games.cli import welcome_user
 from brain_games.constants import ROUNDS
 
 
-def _run_loop_and_verify_answer(game_foo: callable) -> bool:
-    """
-    Единственным аргументом принимает функцию с логикой игры (game_foo).
-    Функция содержит цикл, соответствующий кол-ву раундов (ROUNDS).
-    game_foo возвращает значение за вопроса () и верный ответ. Затем
-    запрашивается ответ пользователя. В цикле сравнивается ответ
-    пользователя и верный ответ. Если ответы не совпадут, цикл прерывается
-    и эта функция возвращает False. Иначе, если цикл завершается штатно,
-    эта функция возвращает True.
-    """
+def _get_user_answer(quest: str) -> str:
+    print('Question:', end=' ')
+    if isinstance(quest, (list, tuple)):
+        print(*quest)
+    else:
+        print(quest)
+    user_answer = prompt.string('Your answer: ').lower()
+    return user_answer
+
+
+def _verify_answer(game_foo: callable) -> bool:
+    quest, correct_answer = game_foo()
+    user_answer = _get_user_answer(quest)
+    if user_answer == correct_answer:
+        print('Correct!')
+        return True
+    print(f"'{user_answer}' is wrong answer ;(. "
+          f"Correct answer was '{correct_answer}'")
+    return False
+
+
+def _run_loop(game_foo: callable) -> bool:
     for _ in range(ROUNDS):
-        quest, correct_answer = game_foo()
-        print('Question:', end=' ')
-        if isinstance(quest, list) or isinstance(quest, tuple):
-            print(*quest)
-        else:
-            print(quest)
-        user_answer = prompt.string('Your answer: ').lower()
-        if user_answer == correct_answer:
-            print('Correct!')
-        else:
-            print(f"'{user_answer}' is wrong answer ;(. "
-                  f"Correct answer was '{correct_answer}'")
+        if not _verify_answer(game_foo):
             return False
     return True
 
 
 def game_engine(game_rules: str, game_foo: callable) -> None:
-    """
-    game_engine - функция, запускающая выполнение игровой логики, общей для
-    разных игр. В аргументы функции передается строка (game_rules) с
-    правилами игры и функция (game_foo) содержащая логику конкретной игры.
-    Далее game_foo передается в аргумент функции _run_loop_and_verify_answer.
-    В зависимости от булевого значения, возвращаемого функцией
-    _run_loop_and_verify_answer происходит выбор завершающего сообщения
-    """
     name = welcome_user()
     print(game_rules)
-    if _run_loop_and_verify_answer(game_foo):
+    if _run_loop(game_foo):
         print(f'Congratulations, {name}!')
     else:
         print(f"Let's try again, {name}!")

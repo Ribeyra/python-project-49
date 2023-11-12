@@ -3,45 +3,17 @@ from brain_games.engine import game_engine
 from brain_games.constants import GAME_RULES_GCD, LIMITS, NUMS_AMOUNT
 
 
-def _get_gcd(nums: list[int]) -> int:
-    """
-    В качестве аргумента принимает список с 2 числами.
-    Возвращает наибольший общий делитель для чисел из списка.
-    """
-    if nums[1] == 0:                        # Вариант бинарного алгоритма,
-        return nums[0]                      # предложенный ChatGPT
-    return _get_gcd([nums[1], nums[0] % nums[1]])
+def _get_gcd(num1: int, num2: int) -> int:
+    if num2 == 0:                        # Вариант бинарного алгоритма,
+        return num1                      # предложенный ChatGPT
+    return _get_gcd(num2, num1 % num2)
 
 
-#    nums.sort()                             # Мой вариант решения с
-#    if nums[0] == 0 or nums[0] == nums[1]:  # использованием бинарного
-#        return nums[1]                      # алгоритма Евклида,
-#    elif nums[0] == 1:                      # который я нашел на вики
-#        return 1                            # https://w.wiki/7mfY
-#    elif nums[0] % 2 == 0 and nums[1] % 2 == 0:
-#        return 2 * gcd([nums[0] // 2, nums[1] // 2])
-#    elif nums[0] % 2 == 0 and nums[1] % 2 == 1:
-#        return gcd([nums[0] // 2, nums[1]])
-#    elif nums[0] % 2 == 1 and nums[1] % 2 == 0:
-#        return gcd([nums[0], nums[1] // 2])
-#    elif nums[0] % 2 == 1 and nums[1] % 2 == 1:
-#        return gcd([nums[0], (nums[1] - nums[0]) // 2])
-
-
-def _game_gcd() -> tuple:
-    """
-    Функция game_gcd определяет логику игры по определению наибольшего
-    общего делителя. Сначала создается список из 2 случайных чисел. Далее
-    для указанных чисел, с помощью рекурсивной функции get_gcd находится НОД.
-    Функция возвращает значение для вопроса и верный_ответ
-    """
-    nums = [random.randrange(LIMITS[0], LIMITS[1]) for _ in range(NUMS_AMOUNT)]
-    correct_answer = str(_get_gcd(nums))
+def _prepare_game_data() -> tuple:
+    nums = [random.randint(LIMITS[0], LIMITS[1]) for _ in range(NUMS_AMOUNT)]
+    correct_answer = str(_get_gcd(*nums))
     return nums, correct_answer
 
 
 def run_game_gcd():
-    """
-    Запускает игру
-    """
-    game_engine(GAME_RULES_GCD, _game_gcd)
+    game_engine(GAME_RULES_GCD, _prepare_game_data)
