@@ -1,33 +1,40 @@
 import random
-from brain_games.engine import game_engine
+from brain_games.utils import get_random_num
+from brain_games.engine import play_game
 from brain_games.constants import (
-    GAME_RULES_CALC,
+    GAME_RULE_CALC,
     LIMIT_FOR_CALC as LIMIT,
     OPERATORS
 )
 
 
-def _get_expression() -> tuple:
+def get_random_operator_and_nums() -> tuple:
     oper = random.choice(OPERATORS)
-    num1, num2 = random.randrange(LIMIT), random.randrange(LIMIT)
-    return num1, oper, num2
+    num1, num2 = get_random_num(LIMIT), get_random_num(LIMIT)
+    return oper, num1, num2
 
 
-def _get_result_math_operation(num1, oper, num2):
+def get_expression() -> str:
+    oper, num1, num2 = get_random_operator_and_nums()
+    return ' '.join((str(num1), oper, str(num2)))
+
+
+def get_result_math_operation(expression: str):
+    num1, oper, num2 = expression.split()
     match oper:
         case '+':
-            return num1 + num2
+            return int(num1) + int(num2)
         case '-':
-            return num1 - num2
+            return int(num1) - int(num2)
         case '*':
-            return num1 * num2
+            return int(num1) * int(num2)
 
 
-def _prepare_game_data() -> tuple:
-    expression = _get_expression()
-    correct_answer = str(_get_result_math_operation(*expression))
-    return expression, correct_answer
+def generate_expression_and_result() -> tuple:
+    expression = get_expression()
+    result = str(get_result_math_operation(expression))
+    return expression, result
 
 
 def run_game_calc():
-    game_engine(GAME_RULES_CALC, _prepare_game_data)
+    play_game(GAME_RULE_CALC, generate_expression_and_result)
