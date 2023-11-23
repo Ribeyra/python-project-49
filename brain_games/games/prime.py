@@ -13,15 +13,15 @@ def is_prime(num: int) -> bool:
 
 def generate_num_and_check_is_prime() -> tuple:
 
-    def _generate_prime_or_composite_num() -> int:
-        prime = random.choice([True, False])
-        num = get_random_num(LIMITS[0], LIMITS[1])
+    def _cast_num_to_target_type(num, prime) -> int:
         while prime != is_prime(num):
             num += 1
         return num
 
-    num = _generate_prime_or_composite_num()
-    prime_str = 'yes' if is_prime(num) else 'no'
+    prime = random.choice([True, False])
+    random_num = get_random_num(LIMITS[0], LIMITS[1])
+    num = _cast_num_to_target_type(random_num, prime)
+    prime_str = 'yes' if prime else 'no'
     return num, prime_str
 
 

@@ -16,14 +16,14 @@ def get_random_len_start_step() -> tuple:
     return len_row, start, step
 
 
-def get_progression() -> list:
-    len_row, start, step = get_random_len_start_step()
+def get_progression(len_row: int, start: int, step: int) -> list:
     progression = [start + i * step for i in range(len_row)]
     return progression
 
 
 def generate_progression_and_secret_value() -> tuple:
-    progression = get_progression()
+    len_row, start, step = get_random_len_start_step()
+    progression = get_progression(len_row, start, step)
     secret_index = get_random_num(1, len(progression) - 2)
     secret_value = str(progression[secret_index])
     progression[secret_index] = '..'
