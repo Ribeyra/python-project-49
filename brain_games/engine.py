@@ -2,24 +2,27 @@ import prompt
 from brain_games.constants import ROUNDS, GREETINGS
 
 
-def printing_message(*args, greetings=False, end_game=False, name=[]) -> None:
-    is_win = args[0] if not greetings else None
-    if greetings:
-        print(GREETINGS)
-        name.append(prompt.string('May I have your name? '))
-        print(f'Hello, {name[0]}')
-        print(args[0])
-    elif not end_game:
+def greet(rule: str) -> str:
+    print(GREETINGS)
+    name = prompt.string('May I have your name? ')
+    print(f'Hello, {name}')
+    print(rule)
+    return name
+
+
+def printing_message(*args, end_game=False) -> None:
+    is_win, *args = args
+    if not end_game:
         if is_win:
             print('Correct!')
         else:
-            print(f"'{args[2]}' is wrong answer ;(. "
-                  f"Correct answer was '{args[1]}'")
+            print(f"'{args[1]}' is wrong answer ;(. "
+                  f"Correct answer was '{args[0]}'")
     else:
         if is_win:
-            print(f'Congratulations, {name[0]}!')
+            print(f'Congratulations, {args[0]}!')
         else:
-            print(f"Let's try again, {name[0]}!")
+            print(f"Let's try again, {args[0]}!")
 
 
 def get_user_answer(quest: str) -> str:
@@ -38,14 +41,11 @@ def user_answer_is_correct(game_foo: callable) -> bool:
     return is_correct
 
 
-def run_loop(game_foo: callable) -> bool:
+def play_game(game_rule: str, game_foo: callable) -> None:
+    name = greet(game_rule)
+    is_win = True
     for _ in range(ROUNDS):
         if not user_answer_is_correct(game_foo):
-            return False
-    return True
-
-
-def play_game(game_rule: str, game_foo: callable) -> None:
-    printing_message(game_rule, greetings=True)
-    is_win = run_loop(game_foo)
-    printing_message(is_win, end_game=True)
+            is_win = False
+            break
+    printing_message(is_win, name, end_game=True)
