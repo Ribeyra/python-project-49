@@ -19,7 +19,7 @@ def generate_num_and_check_is_prime() -> tuple:
         return num
 
     prime = random.choice([True, False])
-    random_num = get_random_num(LIMITS[0], LIMITS[1])
+    random_num = get_random_num([LIMITS[0], LIMITS[1]])
     num = _cast_num_to_target_type(random_num, prime)
     prime_str = 'yes' if prime else 'no'
     return num, prime_str

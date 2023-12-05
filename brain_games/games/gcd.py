@@ -10,7 +10,7 @@ def get_gcd(num1: int, num2: int) -> int:
 
 
 def generate_nums_and_found_gcd() -> tuple:
-    nums = [get_random_num(LIMITS[0], LIMITS[1]) for _ in range(NUMS_AMOUNT)]
+    nums = [get_random_num([LIMITS[0], LIMITS[1]]) for _ in range(NUMS_AMOUNT)]
     correct_answer = str(get_gcd(*nums))
     return nums, correct_answer
 

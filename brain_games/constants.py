@@ -20,10 +20,9 @@ LIMITS = (2, 100)
 
 # even.py
 GAME_RULE_EVEN = 'Answer "yes" if the number is even, otherwise answer "no".'
-LIMIT = 201
+LIMIT = 200
 
 # calc.py
 GAME_RULE_CALC = 'What is the result of the expression?'
-LIMIT_FOR_CALC = 51
+LIMIT_FOR_CALC = 50
 OPERATORS = ("+", "-", "*")
-# LIMIT_AT_MULT = 11

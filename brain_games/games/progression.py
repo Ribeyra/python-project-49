@@ -9,9 +9,9 @@ from brain_games.constants import (
 
 
 def get_random_len_start_step() -> tuple:
-    len_row = get_random_num(LEN_ROW_LIMITS[0], LEN_ROW_LIMITS[1])
-    start = get_random_num(START_LIMIT[0], START_LIMIT[1])
-    step = get_random_num(STEP_LIMITS[0], STEP_LIMITS[1])
+    len_row = get_random_num([LEN_ROW_LIMITS[0], LEN_ROW_LIMITS[1]])
+    start = get_random_num([START_LIMIT[0], START_LIMIT[1]])
+    step = get_random_num([STEP_LIMITS[0], STEP_LIMITS[1]])
     step = step if step else len_row    # exclude the case where the step is 0
     return len_row, start, step
 
@@ -24,10 +24,11 @@ def get_progression(len_row: int, start: int, step: int) -> list:
 def generate_progression_and_secret_value() -> tuple:
     len_row, start, step = get_random_len_start_step()
     progression = get_progression(len_row, start, step)
-    secret_index = get_random_num(1, len(progression) - 2)
+    secret_index = get_random_num([1, len(progression) - 2])
     secret_value = str(progression[secret_index])
     progression[secret_index] = '..'
-    return progression, secret_value
+    progression_str = ' '.join([str(el) for el in progression])
+    return progression_str, secret_value
 
 
 def run_game_progression():

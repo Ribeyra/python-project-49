@@ -8,7 +8,7 @@ def is_even(num: int) -> bool:
 
 
 def generate_num_and_check_is_even() -> tuple:
-    num = get_random_num(LIMIT)
+    num = get_random_num([LIMIT])
     even = 'yes' if is_even(num) else 'no'
     return num, even
 
