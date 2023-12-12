@@ -26,9 +26,9 @@ def get_result_math_operation(oper: str, num1: int, num2: int):
 
 def generate_expression_and_result() -> tuple:
     oper, num1, num2 = get_random_operator_and_nums()
-    expression = ' '.join((str(num1), oper, str(num2)))
-    result = str(get_result_math_operation(oper, num1, num2))
-    return expression, result
+    expression = f'{num1} {oper} {num2}'
+    result = get_result_math_operation(oper, num1, num2)
+    return expression, str(result)
 
 
 def run_game_calc():

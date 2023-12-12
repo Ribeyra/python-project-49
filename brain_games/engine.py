@@ -2,27 +2,33 @@ import prompt
 from brain_games.constants import ROUNDS, GREETINGS
 
 
-def printing_greet(rule: str) -> str:
+def print_greet() -> None:
     print(GREETINGS)
+
+
+def meet_user() -> str:
     name = prompt.string('May I have your name? ')
     print(f'Hello, {name}')
-    print(rule)
     return name
 
 
-def printing_end_message(is_win, name) -> None:
-    if is_win:
-        print(f'Congratulations, {name}!')
-    else:
-        print(f"Let's try again, {name}!")
+def print_rule(rule: str) -> None:
+    print(rule)
 
 
-def printing_round_message(is_correct, correct_answer, user_answer) -> None:
+def print_round_message(is_correct: bool, answer: str, user_answer: str):
     if is_correct:
         print('Correct!')
     else:
         print(f"'{user_answer}' is wrong answer ;(. "
-              f"Correct answer was '{correct_answer}'")
+              f"Correct answer was '{answer}'")
+
+
+def print_end_message(is_win: bool, name: str) -> None:
+    if is_win:
+        print(f'Congratulations, {name}!')
+    else:
+        print(f"Let's try again, {name}!")
 
 
 def get_user_answer(quest: str) -> str:
@@ -31,19 +37,20 @@ def get_user_answer(quest: str) -> str:
     return user_answer
 
 
-def user_answer_is_correct(game_foo: callable) -> bool:
-    quest, correct_answer = game_foo()
-    user_answer = get_user_answer(quest)
-    is_correct = user_answer == correct_answer
-    printing_round_message(is_correct, correct_answer, user_answer)
-    return is_correct
+def is_correct_user_answers(game_foo: callable) -> bool:
+    for _ in range(ROUNDS):
+        quest, correct_answer = game_foo()
+        user_answer = get_user_answer(quest)
+        is_correct = user_answer == correct_answer
+        print_round_message(is_correct, correct_answer, user_answer)
+        if not is_correct:
+            return False
+    return True
 
 
 def play_game(game_rule: str, game_foo: callable) -> None:
-    name = printing_greet(game_rule)
-    is_win = True
-    for _ in range(ROUNDS):
-        if not user_answer_is_correct(game_foo):
-            is_win = False
-            break
-    printing_end_message(is_win, name)
+    print_greet()
+    name = meet_user()
+    print_rule(game_rule)
+    game_result = is_correct_user_answers(game_foo)
+    print_end_message(game_result, name)

@@ -15,7 +15,6 @@ GAME_RULE_PRIME = 'Answer "yes" if given number is prime. '\
 
 # gcd.py
 GAME_RULE_GCD = 'Find the greatest common divisor of given numbers.'
-NUMS_AMOUNT = 2
 LIMITS = (2, 100)
 
 # even.py

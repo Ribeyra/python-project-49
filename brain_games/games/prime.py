@@ -18,11 +18,11 @@ def generate_num_and_check_is_prime() -> tuple:
             num += 1
         return num
 
-    prime = random.choice([True, False])
-    random_num = get_random_num([LIMITS[0], LIMITS[1]])
-    num = _cast_num_to_target_type(random_num, prime)
-    prime_str = 'yes' if prime else 'no'
-    return num, prime_str
+    target_type_is_prime = random.choice([True, False])
+    random_num = get_random_num(LIMITS)
+    num = _cast_num_to_target_type(random_num, target_type_is_prime)
+    prime = 'yes' if target_type_is_prime else 'no'
+    return num, prime
 
 
 def run_game_prime():

@@ -1,6 +1,6 @@
 from brain_games.utils import get_random_num
 from brain_games.engine import play_game
-from brain_games.constants import GAME_RULE_GCD, LIMITS, NUMS_AMOUNT
+from brain_games.constants import GAME_RULE_GCD, LIMITS
 
 
 def get_gcd(num1: int, num2: int) -> int:
@@ -10,9 +10,9 @@ def get_gcd(num1: int, num2: int) -> int:
 
 
 def generate_nums_and_found_gcd() -> tuple:
-    nums = [get_random_num([LIMITS[0], LIMITS[1]]) for _ in range(NUMS_AMOUNT)]
-    correct_answer = str(get_gcd(*nums))
-    nums_str = ' '.join([str(el) for el in nums])
+    num1, num2 = get_random_num(LIMITS), get_random_num(LIMITS)
+    correct_answer = str(get_gcd(num1, num2))
+    nums_str = f'{num1} {num2}'
     return nums_str, correct_answer
 
 
